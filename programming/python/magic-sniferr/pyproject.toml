@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "magic-sniffer"
+version = "0.1.0"
+description = "Inspector determinista de file-spoofing mediante análisis de magic numbers"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "secroses", email = ""}
+]
+keywords = ["security", "file-analysis", "spoofing-detection"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 3 - Alpha",
+]
+
+[project.urls]
+Homepage = "https://github.com/secroses/cybersecurity-portfolio"
+Repository = "https://github.com/secroses/cybersecurity-portfolio"
+
+[project.scripts]
+magic-sniffer = "magic_sniffer.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=magic_sniffer --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["magic_sniffer"]
+omit = ["*/tests/*"]

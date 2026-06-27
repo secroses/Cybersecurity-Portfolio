@@ -1,0 +1,80 @@
+#!/bin/bash
+# Pre-commit hook para MagicSniffer
+# Previene commits de archivos sensibles
+# 
+# Instalación:
+# 1. Copia este archivo a .git/hooks/pre-commit
+# 2. Dale permisos de ejecución: chmod +x .git/hooks/pre-commit
+# 3. Automáticamente se ejecutará antes de cada commit
+
+set -e
+
+# Archivos prohibidos en commits
+FORBIDDEN_PATTERNS=(
+    "reporte_.*\.json"
+    "trampa_.*\.docx"
+    "\.env\.local"
+    "credentials\.json"
+    ".*\.pem$"
+    ".*\.key$"
+    ".*\.xlsx"
+    ".*\.pdf"
+    "test_output/"
+    "scan_output/"
+)
+
+# Colores para terminal
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+echo -e "${YELLOW}🔐 MagicSniffer Pre-Commit Security Check...${NC}"
+
+# Obtener archivos staged
+STAGED_FILES=$(git diff --cached --name-only)
+
+BLOCKED=0
+
+# Revisar cada archivo staged
+for file in $STAGED_FILES; do
+    for pattern in "${FORBIDDEN_PATTERNS[@]}"; do
+        if [[ $file =~ $pattern ]]; then
+            echo -e "${RED}❌ BLOQUEADO: $file${NC}"
+            echo "   Coincide con patrón prohibido: $pattern"
+            BLOCKED=1
+        fi
+    done
+done
+
+# Verificar rutas locales (C:\Users\, /home/, etc)
+for file in $STAGED_FILES; do
+    if file_content=$(git show ":$file" 2>/dev/null); then
+        if echo "$file_content" | grep -qE "(C:\\Users\\|/home/[a-zA-Z]|/root/)" 2>/dev/null; then
+            echo -e "${RED}❌ BLOQUEADO: $file${NC}"
+            echo "   Contiene rutas locales del sistema (C:\Users\, /home/, etc)"
+            BLOCKED=1
+        fi
+    fi
+done
+
+if [ $BLOCKED -eq 1 ]; then
+    echo ""
+    echo -e "${RED}═══════════════════════════════════════════════════════${NC}"
+    echo -e "${RED}🚨 COMMIT BLOQUEADO POR RAZONES DE SEGURIDAD${NC}"
+    echo -e "${RED}═══════════════════════════════════════════════════════${NC}"
+    echo ""
+    echo "Solución:"
+    echo "1. Revisa los archivos bloqueados arriba"
+    echo "2. Agrégalos a .gitignore si son locales"
+    echo "3. Ejecuta: git add .gitignore"
+    echo "4. Intenta commit nuevamente"
+    echo ""
+    echo "Para ignorar esta verificación (NO RECOMENDADO):"
+    echo "  git commit --no-verify"
+    echo ""
+    exit 1
+fi
+
+echo -e "${GREEN}✅ Verificación de seguridad pasada${NC}"
+exit 0
