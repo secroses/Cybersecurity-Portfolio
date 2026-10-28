@@ -12,136 +12,75 @@ Hands-on security research and lab work built while pursuing a B.S. in Informati
 
 ---
 
-## About Me
+Case studies and lab work built while pursuing a B.S. in Information Technologies (Universidad Nacional Rosario Castellanos, 3rd semester) and independent cybersecurity training. Focus: **SOC analysis, threat detection, incident response and AI security**. Currently looking for SOC Analyst Jr / Help Desk IT roles.
 
-- 🎓 2nd semester — Licenciatura en Tecnologías de la Información (UNRC, online)
-- 🛡️ Active participant in **MenCISO** mentorship program (ransomware simulation, PCI-DSS, AI Red Teaming)
-- 📜 **Google Cloud Cybersecurity Certificate** (Google Cloud, Apr 2026)
-- 📜 **Google IT Support Professional Certificate** (Coursera, Dec 2025)
-- 📜 **Google Cloud Computing Foundations** + 4 additional GCP badges (Oct 2025)
-- 📜 **Cisco Intro to Cybersecurity** (Jul 2025)
-- 🎯 Target role: Help Desk / SOC Jr — 6-month timeline
-
-**Core skills:** Linux CLI · File permissions & hardening · Log analysis with SQL · Access control (PoLP) · Cloud networking (GCP) · Threat modeling (PASTA) · C++ with file persistence · Python (beginner)
+[LinkedIn](https://www.linkedin.com/in/yair-rosas) · [Email](mailto:Edgaryair0032@gmail.com) · [GitHub profile](https://github.com/secroses)
 
 ---
 
-## Repository Structure
+## Featured projects (own repositories)
 
-```
-cybersecurity-portfolio/
-├── ai-security/
-│   └── llm-prompt-injection-cbrn/     # LLM Red Teaming — CBRN filter bypass
-├── cloud-incident-response/
-│   └── Cymbal-Retail-Case/            # GCP incident response & PCI DSS remediation
-├── linux/
-│   └── file-permissions/              # Linux permissions lab
-├── sql/
-│   └── security-investigation/        # Log analysis with SQL
-├── threat-modeling-pasta-sneaker-app/ # PASTA threat model — e-commerce app
-├── vulnerability-assessments/
-│   └── ecommerce-database-exposure/   # Database vulnerability report
-└── LICENSE
-```
+Larger projects with code live in their own repos. This repository holds the written case studies.
 
----
-
-## Projects
-
-### 🔬 AI Security — LLM Prompt Injection (CBRN Filter Bypass)
-`ai-security/llm-prompt-injection-cbrn/`
-
-Red Teaming exercise conducted during the **MenCISO AI Security session** (April 2026), focused on evaluating LLM safety guardrails using the **PropensityBench** framework developed by Scale AI.
-
-**Techniques used:** Context Smuggling (institutional authority framing) + Cognitive Load (structured JSON output to degrade semantic safety evaluation).
-
-**Result:** Successful bypass (LLM01 + LLM02). Output redacted per responsible disclosure standards.
-
-**PropensityBench scores for context (March 2026):**
-
-| Model | Propensity Score | Risk Level |
+| Project | What it is | Status |
 |---|---|---|
-| o3-2025-04-16 | 10.5% | 🟢 Leader in safety |
-| Claude Sonnet 4 | 12.2% | 🟢 High resilience |
-| GPT-4o | 46.1% | 🟡 Medium risk |
-| Gemini 2.0 Flash | 77.8% | 🔴 High risk |
-| Gemini 2.5 Pro | 79.0% | 🔴 Maximum risk |
-
-📄 [Full report →](./ai-security/llm-prompt-injection-cbrn/report.md)
+| [SOC Detection Lab](https://github.com/secroses/soc-detection-lab) | Home SOC on limited resources: Wazuh SIEM, Sysmon Modular, custom correlation rules mapped to MITRE ATT&CK, SOAR with Active Response. | Active |
+| [BloomID-v6](https://github.com/secroses/BloomID-v6) | Identity-fraud detection through behavioral biometrics (Isolation Forest), with an API shield protecting the inference pipeline. | Working MVP |
+| Phishing Analyzer | Local email triage tool: parses `.eml` files, scores risk with YAML rules mapped to ATT&CK, extracts IoCs. Tested against emails from my own Gophish lab. | In progress |
+| Gophish Lab: MegaCorp | Write-up of a phishing-awareness campaign run in an isolated lab, from pretext design to results and detection ideas. | In progress |
+| MagicSniffer | File-spoofing detector (extension vs. real file signature). Reused as the attachment module of the Phishing Analyzer. | v0.1 |
 
 ---
 
-### ☁️ Cloud Incident Response — Cymbal Retail Case (GCP)
-`cloud-incident-response/Cymbal-Retail-Case/`
+## Case studies in this repository
 
-Full incident response lifecycle for a simulated data breach at a global retail organization on Google Cloud Platform. From initial vulnerability assessment through containment, recovery, and PCI DSS 3.2.1 compliance validation.
-
-**Key actions:** VM isolation & restoration from snapshot · Public bucket ACL revocation · IAP-only SSH enforcement · Firewall rule hardening · PCI DSS re-audit confirmation.
-
-**Tools:** Security Command Center · Identity-Aware Proxy · Compute Engine · Cloud Storage IAM · gcloud CLI
-
-📄 [Full write-up →](./cloud-incident-response/Cymbal-Retail-Case/README.md)
-
----
-
-### 🧩 Threat Modeling — PASTA Framework (Sneaker App)
-`threat-modeling-pasta-sneaker-app/`
-
-Structured threat model for an e-commerce sneaker application using the **PASTA** (Process for Attack Simulation and Threat Analysis) methodology. Covers attack surface enumeration, threat actor profiling, and risk-prioritized mitigations.
-
-📄 [Full report →](./threat-modeling-pasta-sneaker-app/README.md)
-
----
-
-### 🗄️ Vulnerability Assessment — E-commerce Database Exposure
-`vulnerability-assessments/ecommerce-database-exposure/`
-
-Structured vulnerability assessment documenting a database exposure risk in an e-commerce environment. Includes risk classification, impact analysis, and remediation recommendations aligned with security best practices.
-
-📄 [Full report →](./vulnerability-assessments/ecommerce-database-exposure/README.md)
-
----
-
-### 🐧 Linux — File Permissions Lab
-`linux/file-permissions/`
-
-Hands-on lab covering Linux file permission management: `chmod`, `chown`, permission bits, and security hardening principles (Principle of Least Privilege). Includes baseline analysis, command execution, and verification screenshots.
-
-📄 [Lab notes →](./linux/file-permissions/README.md)
-
----
-
-### 🔍 SQL — Security Investigation
-`sql/security-investigation/`
-
-Log analysis exercise using SQL to investigate a simulated security incident. Demonstrates filtering, aggregation, and pattern detection techniques applicable to SOC tier-1 workflows.
-
-📄 [Queries & write-up →](./sql/security-investigation/README.md)
-
----
-
-## Certifications & Badges
-
-| Credential | Issuer | Date |
+| Case study | Summary | Skills shown |
 |---|---|---|
-| **Google Cloud Cybersecurity Certificate** | Google Cloud | **Apr 2026** |
-| Google IT Support Professional Certificate v3 | Coursera / Google | Dec 2025 |
-| Google Cloud Computing Foundations | Google Cloud | Oct 2025 |
-| Build a Secure Google Cloud Network | Google Cloud | Oct 2025 |
-| Implement Load Balancing on Compute Engine | Google Cloud | Oct 2025 |
-| Prepare Data for ML APIs on Google Cloud | Google Cloud | Oct 2025 |
-| Set Up an App Dev Environment on Google Cloud | Google Cloud | Oct 2025 |
-| Intro to Cybersecurity | Cisco | Jul 2025 |
-| Career Management Essentials | IBM SkillsBuild | Mar 2026 |
-| Digital Mindset | IBM SkillsBuild | Mar 2026 |
-| Working in a Digital World | IBM SkillsBuild | Mar 2026 |
+| [Cymbal Retail: GCP incident response](incident-response/cymbal-retail-gcp/) | Full incident lifecycle for a simulated breach at a retail company on Google Cloud: VM isolation and restore from snapshot, public bucket ACL revocation, IAP-only SSH, firewall hardening, PCI DSS 3.2.1 re-audit. | Incident response, GCP, PCI DSS |
+| [PASTA threat model: sneaker e-commerce app](threat-modeling/pasta-sneaker-app/) | Threat model with attack surface enumeration, threat actor profiling and risk-prioritized mitigations. | Threat modeling, risk analysis |
+| [E-commerce database exposure](vulnerability-assessment/ecommerce-db-exposure/) | Vulnerability assessment of a database exposure risk, with classification, impact analysis and remediation. | Vulnerability assessment, reporting |
+| [LLM guardrail evaluation](ai-security/llm-guardrail-evaluation/) | Red-team exercise from the MenCISO AI Security session (April 2026), mapped to OWASP LLM Top 10. Output redacted. | AI security, responsible disclosure |
+
+### Fundamentals
+
+| Lab | Summary |
+|---|---|
+| [Linux file permissions](fundamentals/linux-file-permissions/) | `chmod`, `chown`, permission bits and least privilege, with baseline analysis and verification. |
+| [SQL security investigation](fundamentals/sql-log-investigation/) | Log analysis with SQL to investigate a simulated incident: filtering, aggregation and pattern detection. |
 
 ---
 
-## Ethical Commitment
+## Where each skill is demonstrated
 
-All security research in this portfolio was conducted in controlled educational environments under professional supervision. Responsible disclosure standards are applied to all findings — exploitation techniques and methodology are documented; regulated or sensitive data obtained during exercises is redacted before any public release.
+| Skill | Evidence |
+|---|---|
+| SIEM and detection engineering | SOC Detection Lab |
+| Incident response | Cymbal Retail case, SOC Detection Lab (SOAR) |
+| Threat modeling | PASTA sneaker app |
+| Phishing analysis | Phishing Analyzer, Gophish Lab |
+| Cloud security (GCP) | Cymbal Retail case |
+| Log analysis | SQL investigation, SOC Detection Lab |
+| Python, C++ | MagicSniffer, BloomID-v6, Phishing Analyzer |
 
 ---
 
-*Currently building toward CompTIA Security+ · Open to Help Desk and SOC Jr opportunities in Mexico City*
+## Certifications
+
+- Google Cybersecurity Professional Certificate (Google, 2026)
+- Splunk Search Expert (Splunk)
+- Google Cloud Cybersecurity Certificate (Google Cloud, Apr 2026)
+- Google IT Support Professional Certificate (Google, Dec 2025)
+- Google Cloud Computing Foundations (Google Cloud, Oct 2025)
+- Introduction to Cybersecurity (Cisco, Jul 2025)
+
+Full list and verification links on [LinkedIn](https://www.linkedin.com/in/yair-rosas).
+
+---
+
+## Ethical commitment
+
+All work here was done in isolated, controlled educational environments, using fictional accounts and domains or systems I own. Findings follow responsible disclosure practices: methodology is documented, while sensitive or regulated data is redacted before publication. Nothing in this repository is intended for use against systems without authorization.
+
+---
+
+License: [MIT](LICENSE)
